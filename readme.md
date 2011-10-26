@@ -41,7 +41,7 @@ To initialize the calendar with start and end date, specify the attributes `data
 
 To set dates programatically, call `$(".jsCalendar").calendar().setDates(start, end)`, where `start` and `end` are Date objects representing the dates you want to set. If you pass `null` as parameter, the corresponding date selection is removed.
 
-To reset the selection programatically (e.g. with an extra button), you could trigger a `resetSelection` event on the jsCalender HTML element.
+To reset the selection programatically (e.g. with an extra button), you could trigger a `resetDates` event on the jsCalender HTML element.
 
 To prevent the automatic calendar generation, set `$.fn.Calendar.defer = true` somewhere that gets evaluated before the document ready event.
 
