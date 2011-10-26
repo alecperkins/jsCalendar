@@ -21,7 +21,7 @@ jsCalendar is a lightweight date picker for desktop and mobile browsers.
 
 # Usage
 
-On document ready, the calendar attaches itself to HTML elements with the class name "jsCalendar". Manual initialization is not necessary. This element should have an attribute `data-localized_date` with a JSON string as value containing the localized names of months and weekdays like this one:
+On document ready, the calendar attaches itself to HTML elements with the class name "jsCalendar". To manually initialize, call `$('selector').Calendar()`. The target element should have an attribute `data-localized_date` with a JSON string as value containing the localized names of months and weekdays like this one:
 
     {"days":{"names":{"min":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]}},"months":{"names":{"long":["January","February","March","April","May","June","July","August","September","October","November","December"]}}}
     
@@ -42,6 +42,8 @@ To initialize the calendar with start and end date, specify the attributes `data
 To set dates programatically, call `$(".jsCalendar").calendar().setDates(start, end)`, where `start` and `end` are Date objects representing the dates you want to set. If you pass `null` as parameter, the corresponding date selection is removed.
 
 To reset the selection programatically (e.g. with an extra button), you could trigger a `resetSelection` event on the jsCalender HTML element.
+
+To prevent the automatic calendar generation, set `$.fn.Calendar.defer = true` somewhere that gets evaluated before the document ready event.
 
 From the user's perspective, range selection works like this: the first click is the start date, second click the end date, a third click resets the selection.
 If the selected end date is before the start date, they are automatically exchanged. It is possible to deselect a start or end date by clicking it without resetting the whole selection. You can implement your own date selection algorithm by rewriting the `dateSelected` method.

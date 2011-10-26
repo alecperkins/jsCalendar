@@ -1,9 +1,15 @@
-(function() {
+(function($) {
+
+    // On the document ready event, initialize a calendar for all of the
+    // elements matching `.jsCalendar`, unless `$.fn.Calendar.defer` is set to
+    // true.
     $(document).ready(function() {
-        var $calendars = $(".jsCalendar");
-        for (var i = 0, maxI = $calendars.length; i < maxI; i++) {
-            var calendar = new Calendar();
-            calendar.ready($calendars.eq(i));
+        if(!$.fn.Calendar.defer) {
+            var $calendars = $(".jsCalendar");
+            for (var i = 0, maxI = $calendars.length; i < maxI; i++) {
+                var calendar = new Calendar();
+                calendar.ready($calendars.eq(i));
+            }
         }
     });
     
@@ -268,4 +274,14 @@
             drawSelection();
         }
     }
-})()
+
+    // Set up calendar creation as a jQuery/Zepto plugin.
+    $.fn.Calendar = function() {
+        var calendar = new Calendar();
+        calendar.ready(this);
+        return this;
+    }
+    // Initialize the defer setting.
+    $.fn.Calendar.defer = false;
+
+})(window.jQuery ? jQuery : window.Zepto ? Zepto : null)
